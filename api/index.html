@@ -4,10 +4,10 @@ right to navigate to specific resources.</p>
 <p>The API uses the JSON format. Unless specified otherwise, all requests and 
 response should have the <code>Content-Type: application/json</code> header.</p>
 <h3 id="http-verbs">HTTP verbs</h3>
-<p>The API uses the standard HTTP verbs to perform CRUD operations (<strong>C</strong>reate, 
+<p>The API uses the standard HTTP verbs to perform CRUD operations (<strong>C</strong>reate,
 <strong>R</strong>etrieve, <strong>U</strong>pdate, <strong>D</strong>elete) on resources, following standard RESTful
 API practices.</p>
-<p>Find below a quick summary of how HTTP verbs are used in the API:</p>
+<p>Here is a quick summary of how HTTP verbs are used in the API:</p>
 <table>
 <thead>
 <tr>
@@ -18,49 +18,42 @@ API practices.</p>
 <tbody>
 <tr>
 <td><code>GET</code></td>
-<td>Used for retrieving a resource or a collection of resources.</td>
+<td>Used to retrieve a resource or a collection of resources.</td>
 </tr>
 <tr>
 <td><code>HEAD</code></td>
-<td>Has the same behaviour as the <code>GET</code> verb but does not return the response body (only the headers). Notice that this verb is only available for some resources.</td>
+<td>Like <code>GET</code> but only returns the headers without the response body. Note that this verb is only available for some resources.</td>
 </tr>
 <tr>
 <td><code>POST</code></td>
-<td>Used for creating a new resource or performing a non-CRUD operation on a resource.</td>
+<td>Used to create a new resource.</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
-<td>Used to perform a full update of a resource (replacing the resource by the JSON data provided in the request).</td>
+<td>Used to perform a full update of a resource (replacing the resource with the JSON representation provided in the request).</td>
 </tr>
 <tr>
 <td><code>PATCH</code></td>
-<td>Used to perform a partial update of a resource (only updating the fields of the resource specified in the JSON data provided in the request).</td>
+<td>Used to perform a partial update of a resource (only updating the properties of the resource specified in the JSON representation provided in the request).</td>
 </tr>
 <tr>
 <td><code>DELETE</code></td>
-<td>Used for deleting resources.</td>
+<td>Used to delete a resource.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="authentication">Authentication</h3>
-<p>To interact with the API, your client will need to be authenticated. This is done by using the <strong>Authorization</strong> header with the username and password of the client and gives something that looks like:</p>
-<pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</span>
-</code></pre><h3 id="errors">Errors</h3>
-<p>In case of error, the API will send a JSON response with the list of errors. 
-Each error has a human-readable message and a code. The code identifies the 
-error type and can be used to handle specific errors differently or for 
-translation purposes.</p>
-<pre><code><span class="hljs-status">HTTP/1.1 <span class="hljs-number">400</span> Bad Request</span>
+<p>To interact with the API, your client must be authenticated.
+This is done by using the <strong>Authorization</strong> header with bearer tokens:</p>
+<pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer QWxhZGRpbjpvcGVuIHNlc2FtZQ==</span>
+</code></pre><p>The administrator can create new bearer tokens for users.
+There is one secret bearer token for the administrator.</p>
+<h3 id="errors">Errors</h3>
+<p>In case of error, the API will send a plain text response with a message describing the problem:</p>
+<pre><code><span class="hljs-status">HTTP/1.1 <span class="hljs-number">422</span> Unprocessable Entity</span>
+<span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/plain</span>
 
-<span class="json">{
-  "<span class="hljs-attribute">errors</span>": <span class="hljs-value">[
-    { 
-      "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"JSON parsing error."</span></span>,
-      "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">10000</span>
-    </span>}
-  ]
-</span>}</span>
+<span class="cs">The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is</span> missing.</span>
 </code></pre><h3 id="dates">Dates</h3>
-<p>All dates returned by the API are in UTC and use the <code>ISO-8601</code> format (ex: 
-<code>2015-02-15T05:21:07Z</code>).</p>
-</div></div></div></div><div class="footer"><div class="container"><p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p><p>Version: 0.0.1  |  Built March 12, 2015 9:38 PM</p></div></div><script type="text/javascript" src="/qimg/js/global.js"></script></body></html>
+<p>All dates returned by the API are in the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format (ex: <code>2015-03-12T21:48:51.192Z</code>).</p>
+</div></div></div></div><div class="footer"><div class="container"><p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p><p>Version: 0.0.1  |  Built March 12, 2015 11:16 PM</p></div></div><script type="text/javascript" src="/qimg/js/global.js"></script></body></html>

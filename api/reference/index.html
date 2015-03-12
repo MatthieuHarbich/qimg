@@ -35,7 +35,7 @@
         <div class="col-sm-9 col-sm-pull-3"><a id="top"></a>
           <h1>List of resources</h1>
           <hr>
-          <div class="page-header"><small></small><b>Endpoint: &nbsp;&nbsp;</b>self-hosted
+          <div class="page-header"><small></small><b>Endpoint: &nbsp;&nbsp;</b>private
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -58,8 +58,8 @@
                   <div id="panel_images" class="panel-collapse collapse">
                     <div class="panel-body">
                       <!-- extended "buttons" (list)-->
-                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#images_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p>Retrieve the list of uploaded images</p>
-</span></a><a href="#" data-toggle="modal" data-target="#images_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p>Upload an image</p>
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#images_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p><p>Retrieve the list of uploaded images</p>
+</span></a><a href="#" data-toggle="modal" data-target="#images_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p><p>Upload an image</p>
 </span></a>
                       </div>
                     </div>
@@ -87,7 +87,7 @@
                             <div id="images_get_request" class="tab-pane">
                               <h3>Headers</h3>
                               <ul>
-                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain a user’s or an administrator’s bearer token.</p>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain a user’s or the administrator’s bearer token.</p>
 <p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
 
                                 </li>
@@ -101,23 +101,29 @@
   {
     "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:54:01.284Z"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2f0f532e-44cc-411a-837c-a0061b2be7fb"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">2450913</span></span>,
     "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
     "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/2f0f532e-44cc-411a-837c-a0061b2be7fb.png"</span>
   </span>},
   {
     "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:53:37.900Z"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"e30e953f-90d9-4433-b544-efb0b7de0c53"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">46790283</span></span>,
     "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
     "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/e30e953f-90d9-4433-b544-efb0b7de0c53.png"</span>
   </span>},
   {
     "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T18:09:54.024Z"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"51f40f44-bd52-49cc-bc65-a8007dbcbda5"</span></span>,
+    "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">1923845</span></span>,
     "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
     "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/51f40f44-bd52-49cc-bc65-a8007dbcbda5.png"</span>
   </span>}
 ]
 </pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
                             </div>
                           </div>
                         </div>
@@ -144,12 +150,16 @@
 <p>Use the <code>application/json</code> content type to upload base64-encoded data.</p>
 <p>Use the <code>multipart/form-data</code> content type to upload an image file.
 Send the image file as the <code>image</code> field.</p>
+<p>Images cannot be larger than 2MB.
+(When sending base64-encoded image data, the entire JSON payload cannot be larger than 2MB.)</p>
+<h2 id="quota">Quota</h2>
+<p>If you have reached the image quota (10 by default), your oldest uploaded images will be purged.</p>
 </span>
                             </div>
                             <div id="images_post_request" class="tab-pane">
                               <h3>Headers</h3>
                               <ul>
-                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain the administrator’s bearer token.
 Users are not allowed access to this resource.</p>
 <p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
 
@@ -179,9 +189,20 @@ Content-Type: image/png
                               <pre>{
   "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:54:01.284Z"</span></span>,
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2f0f532e-44cc-411a-837c-a0061b2be7fb"</span></span>,
+  "<span class="hljs-attribute">size</span>": <span class="hljs-value"><span class="hljs-number">456203</span></span>,
   "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/2f0f532e-44cc-411a-837c-a0061b2be7fb.png"</span>
 </span>}
 </pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>You were authenticated but your role does not give you access to this resource.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/413" target="_blank">413</a></h2><p>The uploaded image is too large.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre>The uploaded image <span class="hljs-keyword">is</span> too large (the limit <span class="hljs-keyword">is</span> <span class="hljs-number">2</span>MB).</pre>
                               <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/415" target="_blank">415</a></h2><p>The body of the request is in an unsupported format.</p>
 
                               <h3>Body</h3>
@@ -204,6 +225,72 @@ The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is
                     </div>
                   </div>
                 </div>
+                <div class="panel panel-white">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_images_imageId" class="block collapsed"><span id="delete_images_imageId" class="badge badge_delete">delete  </span><span class="parent">/images</span>/{imageId}
+                        </a>
+                    </h4>
+                  </div>
+                  <div id="panel_images_imageId" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <!-- extended "buttons" (list)-->
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#images_imageId_delete" class="list-group-item"><span class="badge badge_delete">delete  </span><span><p><p>Delete an uploaded image</p>
+</span></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="images_imageId_delete" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_delete">delete  </span>&nbsp;&nbsp;<span class="parent">/images</span>/{imageId}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#images_imageId_delete_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#images_imageId_delete_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#images_imageId_delete_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="images_imageId_delete_description" class="tab-pane active"><span><p>Delete an uploaded image.</p>
+<p>If you are authenticated as a user, you must be the one who uploaded the image.</p>
+</span>
+                            </div>
+                            <div id="images_imageId_delete_request" class="tab-pane">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li><strong>imageId string</strong></li>
+                              </ul>
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain a user’s or the administrator’s bearer token.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                            </div>
+                            <div id="images_imageId_delete_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The token and associated images have been successfully deleted.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>No image correspond to the specified ID, or someone else uploaded that image.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre>No image found <span class="hljs-keyword">with</span> ID <span class="hljs-string">"682f1d0e-b243-4ed0-9ae2-66e9b4b51193"</span>.</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="panel-footer"><a href="#top" class="btn">Back to top</a></div>
@@ -216,7 +303,8 @@ The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is
               </h3>
             </div>
             <div class="panel-body">
-              <div class="resource-description"><p>Authentication management resource.</p>
+              <div class="resource-description"><p>Token management resource.
+The administrator can create tokens that users can use for authentication with the image resources.</p>
 </div>
               <div class="panel-group">
                 <div class="panel panel-white">
@@ -229,8 +317,8 @@ The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is
                   <div id="panel_tokens" class="panel-collapse collapse">
                     <div class="panel-body">
                       <!-- extended "buttons" (list)-->
-                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#tokens_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p>Retrieve the list of authentication tokens</p>
-</span></a><a href="#" data-toggle="modal" data-target="#tokens_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p>Create a user authentication token</p>
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#tokens_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p><p>Retrieve the list of authentication tokens</p>
+</span></a><a href="#" data-toggle="modal" data-target="#tokens_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p><p>Create a user authentication token</p>
 </span></a>
                       </div>
                     </div>
@@ -257,7 +345,7 @@ The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is
                             <div id="tokens_get_request" class="tab-pane">
                               <h3>Headers</h3>
                               <ul>
-                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain the administrator’s bearer token.
 Users are not allowed access to this resource.</p>
 <p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
 
@@ -285,6 +373,11 @@ Users are not allowed access to this resource.</p>
   </span>}
 ]
 </pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>You were authenticated but your role does not give you access to this resource.</p>
+
                             </div>
                           </div>
                         </div>
@@ -312,12 +405,13 @@ This token can be used to upload and list images as a user.</p>
 <p>Tokens are only valid for a limited time.
 You can specify an optional <code>lifetime</code> property (in seconds) which defaults to 2,592,000 (30 days).
 It must be at least 1 second and at most 31,536,000 seconds (365 days).</p>
+<p>You can provide an optional <code>name</code> property (up to 50 characters long).</p>
 </span>
                             </div>
                             <div id="tokens_post_request" class="tab-pane">
                               <h3>Headers</h3>
                               <ul>
-                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain the administrator’s bearer token.
 Users are not allowed access to this resource.</p>
 <p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
 
@@ -326,7 +420,8 @@ Users are not allowed access to this resource.</p>
                               <h3>Body</h3>
                               <p><strong>Type: application/json</strong></p><strong>Example:</strong>
                               <pre>{
-  "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span>
+  "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"foo"</span>
 </span>}
 </pre>
                             </div>
@@ -339,10 +434,21 @@ Users are not allowed access to this resource.</p>
   "<span class="hljs-attribute">expiresAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-04-11T20:08:33.491Z"</span></span>,
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"b89505ec-f5de-4fdd-9732-a4e3f40724ac"</span></span>,
   "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"foo"</span></span>,
   "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"BjgUp95+mueexr6aPIw3h6LIkq8Tx19pgTEI1X0XxsghxTWhhwlKBgKnwTTQiR/mvU3eglIHe4ecYQX4yeSQ+fGiuLZ903Kh/wsCSraetxB5UHtsJCBl2FSmSvdxSrpNBBnnRYe6HClbDukx4atwdEBEktEQ2xR+RBGeA16ZCBA="</span>
 </span>}
 </pre>
-                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>The lifetime of the token is not an integer, is less than one, or is more than 365 days.</p>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>You were authenticated but your role does not give you access to this resource.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/422" target="_blank">422</a></h2><p><p>There are errors in the body of the request.</p></p>
+<p><p>This can happen if</p></p>
+<ul>
+<li>the lifetime is not an integer, is less than one, or is more than 365 days;</li>
+<li>the name is not a string, or longer than 50 characters.</li>
+</ul>
 
                               <h3>Body</h3>
                               <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
@@ -351,7 +457,80 @@ Users are not allowed access to this resource.</p>
 The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">property</span> must be <span class="hljs-keyword">greater than</span> zero.
 
 The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">property</span> must be <span class="hljs-keyword">less than or equal</span> <span class="hljs-keyword">to</span> <span class="hljs-number">31</span>,<span class="hljs-number">536</span>,<span class="hljs-number">000</span> (<span class="hljs-number">365</span> days).
+
+The <span class="hljs-string">"name"</span> <span class="hljs-keyword">property</span> must be a <span class="hljs-type">string</span>.
+
+The <span class="hljs-string">"name"</span> <span class="hljs-keyword">property</span> must <span class="hljs-keyword">not</span> be longer than <span class="hljs-number">50</span> <span class="hljs-property">characters</span>.
 </pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-white">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_tokens_tokenId" class="block collapsed"><span id="delete_tokens_tokenId" class="badge badge_delete">delete  </span><span class="parent">/tokens</span>/{tokenId}
+                        </a>
+                    </h4>
+                  </div>
+                  <div id="panel_tokens_tokenId" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <!-- extended "buttons" (list)-->
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#tokens_tokenId_delete" class="list-group-item"><span class="badge badge_delete">delete  </span><span><p><p>Delete an authentication token</p>
+</span></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tokens_tokenId_delete" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_delete">delete  </span>&nbsp;&nbsp;<span class="parent">/tokens</span>/{tokenId}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tokens_tokenId_delete_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#tokens_tokenId_delete_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#tokens_tokenId_delete_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="tokens_tokenId_delete_description" class="tab-pane active"><span><p>Delete an authentication token.</p>
+<p><strong>All images linked to that user will be purged as well.</strong></p>
+</span>
+                            </div>
+                            <div id="tokens_tokenId_delete_request" class="tab-pane">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li><strong>tokenId string</strong></li>
+                              </ul>
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain the administrator’s bearer token.
+Users are not allowed access to this resource.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                            </div>
+                            <div id="tokens_tokenId_delete_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The token and associated images have been successfully deleted.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You have not provided authentication credentials or they are invalid or have expired.
+Make sure you are sending the <code>Authorization</code> header and that it contains a valid bearer token (e.g. <code>Authorization: Bearer 9q84nv98n</code>) that has not expired.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>You were authenticated but your role does not give you access to this resource.</p>
+
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>No token correspond to the specified ID.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre>No <span class="hljs-keyword">token</span> found <span class="hljs-operator">with</span> ID <span class="hljs-string">"cf8eb01b-0b39-4355-9226-7a858f5d6172"</span>.</pre>
                             </div>
                           </div>
                         </div>
@@ -369,7 +548,7 @@ The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">prope
     <div class="footer">
       <div class="container">
         <p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p>
-        <p>Version: 0.0.1  |  Built March 12, 2015 9:38 PM</p>
+        <p>Version: 0.0.1  |  Built March 12, 2015 11:16 PM</p>
       </div>
     </div>
     <script type="text/javascript" src="/qimg/js/global.js"></script>
