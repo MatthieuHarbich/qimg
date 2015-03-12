@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of resources</title>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An API documentation project using Grunt, Metalsmith and RAML.">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/raml.css">
+    <link rel="stylesheet" href="/css/highlight.github.min.css">
+  </head>
+  <body>
+    <nav role="navigation" class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">qimg</a>
+        </div>
+        <div id="navbarcollapse" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/api">API Reference</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-sm-push-9">
+          <h1>Resources</h1>
+          <hr>
+          <ul class="nav subnav">
+            <li><a href="/api/reference/#images"><span>/images</span></a></li>
+            <li><a href="/api/reference/#tokens"><span>/tokens</span></a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-pull-3"><a id="top"></a>
+          <h1>List of resources</h1>
+          <hr>
+          <div class="page-header"><small></small><b>Endpoint: &nbsp;&nbsp;</b>self-hosted
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="images" class="panel-title">
+                /images
+                
+              </h3>
+            </div>
+            <div class="panel-body">
+              <div class="resource-description"><p>Image upload resource.</p>
+</div>
+              <div class="panel-group">
+                <div class="panel panel-white">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_images" class="block collapsed"><span id="get_images" class="badge badge_get">get  </span><span id="post_images" class="badge badge_post">post  </span><span class="parent"></span>/images
+                        </a>
+                    </h4>
+                  </div>
+                  <div id="panel_images" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <!-- extended "buttons" (list)-->
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#images_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p>Retrieve the list of uploaded images</p>
+</span></a><a href="#" data-toggle="modal" data-target="#images_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p>Upload an image</p>
+</span></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="images_get" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_get">get  </span>&nbsp;&nbsp;<span class="parent"></span>/images</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#images_get_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#images_get_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#images_get_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="images_get_description" class="tab-pane active"><span><p>Retrieve the list of uploaded images.</p>
+<p>If you are authenticated as a user, this will return only the images you uploaded and you will not see the <code>tokenId</code> property.</p>
+</span>
+                            </div>
+                            <div id="images_get_request" class="tab-pane">
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain a user’s or an administrator’s bearer token.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                            </div>
+                            <div id="images_get_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>[
+  {
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:54:01.284Z"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2f0f532e-44cc-411a-837c-a0061b2be7fb"</span></span>,
+    "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
+    "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/2f0f532e-44cc-411a-837c-a0061b2be7fb.png"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:53:37.900Z"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"e30e953f-90d9-4433-b544-efb0b7de0c53"</span></span>,
+    "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
+    "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/e30e953f-90d9-4433-b544-efb0b7de0c53.png"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T18:09:54.024Z"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"51f40f44-bd52-49cc-bc65-a8007dbcbda5"</span></span>,
+    "<span class="hljs-attribute">tokenId</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
+    "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/51f40f44-bd52-49cc-bc65-a8007dbcbda5.png"</span>
+  </span>}
+]
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="images_post" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_post">post  </span>&nbsp;&nbsp;<span class="parent"></span>/images</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#images_post_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#images_post_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#images_post_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="images_post_description" class="tab-pane active"><span><p>Upload an image.</p>
+<p>Use the <code>application/json</code> content type to upload base64-encoded data.</p>
+<p>Use the <code>multipart/form-data</code> content type to upload an image file.
+Send the image file as the <code>image</code> field.</p>
+</span>
+                            </div>
+                            <div id="images_post_request" class="tab-pane">
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+Users are not allowed access to this resource.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>{
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value"><span class="hljs-string">"YXdvNHQgOHNpOGhnIHM4aHQ="</span>
+</span>}
+</pre>
+                              <p><strong>Type: multipart/form-data</strong></p><strong>Example:</strong>
+                              <pre><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">multipart/form-data; boundary=AaB03x</span>
+
+<span class="r">--AaB03x
+Content-Disposition: form-data; name=<span class="hljs-string">"image"</span>; filename=<span class="hljs-string">"image.png"</span>
+Content-Type: image/png
+
+<span class="hljs-keyword">...</span> contents of image.png <span class="hljs-keyword">...</span>
+--AaB03x--
+</span></pre>
+                            </div>
+                            <div id="images_post_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>{
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T19:54:01.284Z"</span></span>,
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2f0f532e-44cc-411a-837c-a0061b2be7fb"</span></span>,
+  "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"https://api.example.com/images/2f0f532e-44cc-411a-837c-a0061b2be7fb.png"</span>
+</span>}
+</pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/415" target="_blank">415</a></h2><p>The body of the request is in an unsupported format.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre><span class="hljs-type">The</span> request must have content <span class="hljs-typedef"><span class="hljs-keyword">type</span> application/json or multipart/form-<span class="hljs-keyword">data</span>.</span></pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>There are errors in the body of the request.</p>
+<p>For the application/json content type, this happens if the “data” property is missing.
+For the multipart/form-data content type, this happens if the “image” field is not set.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre>The <span class="hljs-string">"data"</span> <span class="hljs-keyword">property</span> must <span class="hljs-keyword">contain</span> <span class="hljs-keyword">the</span> base64-encoded image data.
+
+The <span class="hljs-string">"image"</span> field <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">set</span>.
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"><a href="#top" class="btn">Back to top</a></div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="tokens" class="panel-title">
+                /tokens
+                
+              </h3>
+            </div>
+            <div class="panel-body">
+              <div class="resource-description"><p>Authentication management resource.</p>
+</div>
+              <div class="panel-group">
+                <div class="panel panel-white">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_tokens" class="block collapsed"><span id="get_tokens" class="badge badge_get">get  </span><span id="post_tokens" class="badge badge_post">post  </span><span class="parent"></span>/tokens
+                        </a>
+                    </h4>
+                  </div>
+                  <div id="panel_tokens" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <!-- extended "buttons" (list)-->
+                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#tokens_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p>Retrieve the list of authentication tokens</p>
+</span></a><a href="#" data-toggle="modal" data-target="#tokens_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p>Create a user authentication token</p>
+</span></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tokens_get" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_get">get  </span>&nbsp;&nbsp;<span class="parent"></span>/tokens</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tokens_get_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#tokens_get_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#tokens_get_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="tokens_get_description" class="tab-pane active"><span><p>Retrieve the list of authentication tokens.</p>
+</span>
+                            </div>
+                            <div id="tokens_get_request" class="tab-pane">
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+Users are not allowed access to this resource.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                            </div>
+                            <div id="tokens_get_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>[
+  {
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T18:07:00.838Z"</span></span>,
+    "<span class="hljs-attribute">expiresAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-04-11T18:07:00.838Z"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"fbd996d8-9dcb-4473-816a-be3b85972c75"</span></span>,
+    "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span></span>,
+    "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"QzYN9F9EW51UtqLn2sYHiVA0prKE/Vtio7cL9f6N+hMBf4MJvqFkwNn+BdLuhLeYqS5yDFDvpJ2h9Uhff71buiaUCgfc/NBSUb6ctPtNwqBhLhByojfrgEcWRtRXc4z7c6MFGP5q2MHKAxfqMgTdUpJxCw4ycrJfyTesAj2/rTc="</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T18:01:57.302Z"</span></span>,
+    "<span class="hljs-attribute">expiresAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T18:02:57.302Z"</span></span>,
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"343e75a3-4764-4e11-b534-2fea827a9d9e"</span></span>,
+    "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">60</span></span>,
+    "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"PWLFp5zrA/BHDROtabpemSlLQJs31ALpiDJ4bBkjq6x36TFnkTm7/sNHecWTzcG88ZIGpfnSgrYi60zWU2GiHlNaoMZ+Qmvl1vdOuDU5qUWsbM/Y0xzXpbwa9AbtCEv7QvdzO9WfanelNtCwwSX/+GhE++CqwaYiacQWCjV/YbQ="</span>
+  </span>}
+]
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tokens_post" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                          <h4 class="modal-title"><span class="badge badge_post">post  </span>&nbsp;&nbsp;<span class="parent"></span>/tokens</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Nav tabs-->
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tokens_post_description" data-toggle="tab">Description</a></li>
+                            <li><a href="#tokens_post_request" data-toggle="tab">Request</a></li>
+                            <li><a href="#tokens_post_response" data-toggle="tab">Response</a></li>
+                          </ul>
+                          <!-- Tab panes-->
+                          <div class="tab-content">
+                            <div id="tokens_post_description" class="tab-pane active"><span><p>Create a user authentication token.
+This token can be used to upload and list images as a user.</p>
+<p>Tokens are only valid for a limited time.
+You can specify an optional <code>lifetime</code> property (in seconds) which defaults to 2,592,000 (30 days).
+It must be at least 1 second and at most 31,536,000 seconds (365 days).</p>
+</span>
+                            </div>
+                            <div id="tokens_post_request" class="tab-pane">
+                              <h3>Headers</h3>
+                              <ul>
+                                <li class="markdown"><strong>Authorization</strong><em> required (string)</em><p>The Authorization header must contain an administrator’s bearer token.
+Users are not allowed access to this resource.</p>
+<p><code>Authorization: Bearer $BEARER_TOKEN</code></p>
+
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>{
+  "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span>
+</span>}
+</pre>
+                            </div>
+                            <div id="tokens_post_response" class="tab-pane">
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+                              <h3>Body</h3>
+                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
+                              <pre>{
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-03-12T20:08:33.491Z"</span></span>,
+  "<span class="hljs-attribute">expiresAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-04-11T20:08:33.491Z"</span></span>,
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"b89505ec-f5de-4fdd-9732-a4e3f40724ac"</span></span>,
+  "<span class="hljs-attribute">lifetime</span>": <span class="hljs-value"><span class="hljs-number">2592000</span></span>,
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"BjgUp95+mueexr6aPIw3h6LIkq8Tx19pgTEI1X0XxsghxTWhhwlKBgKnwTTQiR/mvU3eglIHe4ecYQX4yeSQ+fGiuLZ903Kh/wsCSraetxB5UHtsJCBl2FSmSvdxSrpNBBnnRYe6HClbDukx4atwdEBEktEQ2xR+RBGeA16ZCBA="</span>
+</span>}
+</pre>
+                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>The lifetime of the token is not an integer, is less than one, or is more than 365 days.</p>
+
+                              <h3>Body</h3>
+                              <p><strong>Type: text/plain</strong></p><strong>Example:</strong>
+                              <pre>The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">property</span> must be an <span class="hljs-type">integer</span>.
+
+The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">property</span> must be <span class="hljs-keyword">greater than</span> zero.
+
+The <span class="hljs-string">"lifetime"</span> <span class="hljs-keyword">property</span> must be <span class="hljs-keyword">less than or equal</span> <span class="hljs-keyword">to</span> <span class="hljs-number">31</span>,<span class="hljs-number">536</span>,<span class="hljs-number">000</span> (<span class="hljs-number">365</span> days).
+</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"><a href="#top" class="btn">Back to top</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p>
+        <p>Version: 0.0.1  |  Built March 12, 2015 9:30 PM</p>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+  </body>
+</html>
